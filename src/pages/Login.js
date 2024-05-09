@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input, Button, Password } from "rizzui";
 import "../styles/login.css";
+import axios from "axios";
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +21,7 @@ const Login = (props) => {
 
   const navigate = useNavigate();
 
-  const onButtonClick = () => {
+  const onButtonClick = async () => {
     if (email === "") {
       setEmailError("Email is required");
     }
@@ -28,11 +29,25 @@ const Login = (props) => {
       setPasswordError("Password is required");
     }
     if (email !== "" && password !== "") {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        navigate("/dashboard");
-      }, 2000);
+      await axios
+        .post("http://localhost:3637/auth/user/signin", {
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          if (res.data.msg === "wrong Email") {
+            setEmailError("Wrong Email try again");
+          } else if (res.data.msg === "wrong password") {
+            setPasswordError("Wrong Password try again");
+          } else if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+            navigate("/stock");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
