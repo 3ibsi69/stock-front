@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Input, Button, Password } from "rizzui";
 import axios from "axios";
 import Inventory from "../components/inventory.tsx";
 import "../styles/stock.css";
