@@ -26,24 +26,7 @@ function NavBar() {
               All Stocks
             </Link>
           </li>
-          <li>
-            <Link
-              to="/about"
-              className="hover-effect"
-              onClick={closeMobileMenu}
-            >
-              About Me
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/experience"
-              className="hover-effect"
-              onClick={closeMobileMenu}
-            >
-              Experience
-            </Link>
-          </li>
+
           <li>
             <Link to="/" className="hover-effect" onClick={closeMobileMenu}>
               Logout

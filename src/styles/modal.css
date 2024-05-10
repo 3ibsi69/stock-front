@@ -1,0 +1,23 @@
+.row {
+    margin-bottom: 10px;
+}
+
+.edit-btn {
+    width: 71px;
+    height: 32px;
+    background-color: none;
+    border: 1px solid blue;
+    border-radius: 5px;
+    color: blue;
+}
+
+.stock-container {
+    margin-left: 120px;
+}
+
+@media (max-width: 584px) {
+    .stock-container {
+        margin-left: 0;
+    }
+
+}
