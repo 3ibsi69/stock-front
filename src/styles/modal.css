@@ -15,17 +15,13 @@
     margin-left: 120px;
 }
 
-.settings-container {
-    margin-left: 520px;
-}
+
 
 @media (max-width: 584px) {
     .stock-container {
         margin-left: 0;
     }
 
-    .settings-container {
-        margin-left: 0;
-    }
+
 
 }
