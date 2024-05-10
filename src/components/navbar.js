@@ -26,6 +26,15 @@ function NavBar() {
               All Stocks
             </Link>
           </li>
+          <li>
+            <Link
+              to="/settings"
+              className="hover-effect"
+              onClick={closeMobileMenu}
+            >
+              Account Settings
+            </Link>
+          </li>
 
           <li>
             <Link to="/" className="hover-effect" onClick={closeMobileMenu}>

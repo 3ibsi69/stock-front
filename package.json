@@ -18,6 +18,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "rizzui": "^0.8.4",
     "tw-elements-react": "^1.0.0-alpha2",
     "web-vitals": "^2.1.4"
