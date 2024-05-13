@@ -1,7 +1,9 @@
 .Fournisseur-container {
     margin-top: 100px;
     margin-left: 260px;
-
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .title {
@@ -12,11 +14,43 @@
     color: #333;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
+.Preview {
+    flex: 1;
+    /* Take up remaining space */
+    margin-left: 20px;
+    max-width: 50%;
+    /* Set maximum width to half of the container */
+}
+
+.Preview .table {
     width: 100%;
-    max-width: 400px;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.Preview .table .row {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+}
+
+.Preview .table .row:last-child {
+    border-bottom: none;
+}
+
+.Preview .table .cell {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+.Preview .table .cell:first-child {
+    border-right: 1px solid #ccc;
+}
+
+.form {
+    flex: 1;
+    max-width: 50%;
     padding: 1rem;
     background-color: #fff;
     border-radius: 5px;
@@ -26,8 +60,6 @@
 .row-input {
     margin-bottom: 1rem;
 }
-
-
 
 .register {
     margin-top: 1rem;
@@ -43,9 +75,24 @@
 }
 
 
-@media (max-width: 584px) {
+@media (max-width: 1120px) {
     .Fournisseur-container {
         margin: 35px;
+        flex-direction: column;
+        align-items: center;
     }
 
+    .Preview,
+    .form {
+        max-width: 100%;
+    }
+}
+
+
+@media (max-width: 915px) {
+    .Fournisseur-container {
+        margin: 35px;
+        flex-direction: column;
+        align-items: center;
+    }
 }
