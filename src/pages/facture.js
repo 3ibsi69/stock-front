@@ -9,7 +9,6 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
 const Facture = (props) => {
-  const navigate = useNavigate();
   const [toUser, setToUser] = useState("");
   const [toUserError, setToUserError] = useState("");
   const [fromUser, setFromUser] = useState("");
@@ -18,9 +17,14 @@ const Facture = (props) => {
   const [options, setOptions] = useState([{ value: "", label: "" }]);
   const [selectedProducts, setSelectedProducts] = useState([]); // Changed to an array
   const [productQuantities, setProductQuantities] = useState({}); // State to store product quantities
-
+  const navigate = useNavigate();
   const animatedComponents = makeAnimated();
-
+  useEffect(() => {
+    const User = JSON.parse(localStorage.getItem("user"));
+    if (!User) {
+      navigate("/");
+    }
+  }, [navigate]);
   const onButtonClick = async () => {
     try {
       if (toUser === "") {

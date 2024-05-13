@@ -19,6 +19,12 @@ const Fournisseur = (props) => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const User = JSON.parse(localStorage.getItem("user"));
+    if (!User) {
+      navigate("/");
+    }
+  }, [navigate]);
   const onButtonClick = async () => {
     try {
       if (name === "") {
