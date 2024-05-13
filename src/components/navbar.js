@@ -28,6 +28,26 @@ function NavBar() {
           </li>
           <li>
             <Link
+              to="/fournisseur"
+              className="hover-effect"
+              onClick={closeMobileMenu}
+            >
+              Fournisseur
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/facture"
+              className="hover-effect"
+              onClick={closeMobileMenu}
+            >
+              Facture
+            </Link>
+          </li>
+
+          <li>
+            <Link
               to="/settings"
               className="hover-effect"
               onClick={closeMobileMenu}

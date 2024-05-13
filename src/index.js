@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Stock from "./pages/Stock";
 import Navbar from "./components/navbar";
 import Settings from "./pages/settings";
+import Fournisseur from "./pages/fournisseur";
+import Facture from "./pages/facture";
 import "./styles/modal.css";
 
 import "./tailwind.css";
@@ -19,6 +21,8 @@ function App() {
         <Route path="/signup" element={<SignupS />} />
         <Route path="/stock" element={<Stocks />} />
         <Route path="/settings" element={<SettingsS />} />
+        <Route path="/fournisseur" element={<FournisseurS />} />
+        <Route path="/facture" element={<FactureS />} />
       </Routes>
     </BrowserRouter>
   );
@@ -47,6 +51,26 @@ function SettingsS() {
       <Navbar />
       <div className="settings-container">
         <Settings />
+      </div>
+    </>
+  );
+}
+function FournisseurS() {
+  return (
+    <>
+      <Navbar />
+      <div className="fournisseur-container">
+        <Fournisseur />
+      </div>
+    </>
+  );
+}
+function FactureS() {
+  return (
+    <>
+      <Navbar />
+      <div className="facture-container">
+        <Facture />
       </div>
     </>
   );
