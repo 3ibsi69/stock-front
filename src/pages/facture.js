@@ -118,12 +118,11 @@ const Facture = (props) => {
         return;
       } else {
         toast.success("Facture created successfully");
-        // setToUser("");
-        // setFromUser("");
-        // setSelectedProducts([]);
-        // setProductQuantities({});
+        setToUser("");
+        setFromUser("");
+        setSelectedProducts([]);
+        setProductQuantities({});
         setLoading(false);
-        console.log(response.data._id);
         getFacture(response.data._id);
       }
     } catch (error) {
