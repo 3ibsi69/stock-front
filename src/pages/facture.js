@@ -14,7 +14,19 @@ const Facture = (props) => {
   const [fromUser, setFromUser] = useState("");
   const [fromUserError, setFromUserError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [options, setOptions] = useState([{ value: "", label: "" }]);
+  const [options, setOptions] = useState([
+    {
+      value: "",
+      code: "",
+      label: "",
+      designation: "",
+      category: "",
+      prixAchatHT: "",
+      prixVenteHT: "",
+      MargeHT: "",
+      quantite: "",
+    },
+  ]);
   const [selectedProducts, setSelectedProducts] = useState([]); // Changed to an array
   const [productQuantities, setProductQuantities] = useState({}); // State to store product quantities
   const navigate = useNavigate();
@@ -25,6 +37,44 @@ const Facture = (props) => {
       navigate("/");
     }
   }, [navigate]);
+
+  const getFacture = async (id) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3637/facture/get/${id}`
+      );
+      const factureData = response.data;
+
+      const pdfResponse = await axios.post(
+        "http://localhost:3637/pdf/get",
+        {
+          content: [
+            {
+              to: toUser,
+              from: fromUser,
+              products: factureData.products,
+            },
+          ],
+        },
+        { responseType: "blob" }
+      );
+
+      const blob = new Blob([pdfResponse.data], { type: "application/pdf" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "facture.pdf");
+
+      document.body.appendChild(link);
+      link.click();
+
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onButtonClick = async () => {
     try {
       if (toUser === "") {
@@ -44,26 +94,38 @@ const Facture = (props) => {
         return;
       }
       setLoading(true);
-
       const response = await axios.post(
         "http://localhost:3637/facture/create",
         {
-          toUser: toUser,
-          fromUser: fromUser,
+          to: toUser,
+          from: fromUser,
           products: selectedProducts.map((product) => ({
             _id: product.value,
-            quantity: productQuantities[product.value],
+            code: product.code,
+            designation: product.designation,
+            category: product.category,
+            prixAchatHT: product.prixAchatHT,
+            prixVenteHT: product.prixVenteHT,
+            MargeHT: product.MargeHT,
+            quantite: productQuantities[product.value],
           })),
         }
       );
-      if (response.status === 200) {
+      if (response.data.msg === "Out of stock") {
+        toast.error("Out of stock");
+        setLoading(false);
+
+        return;
+      } else {
         toast.success("Facture created successfully");
-        setToUser("");
-        setFromUser("");
-        setSelectedProducts([]);
-        setProductQuantities({});
+        // setToUser("");
+        // setFromUser("");
+        // setSelectedProducts([]);
+        // setProductQuantities({});
+        setLoading(false);
+        console.log(response.data._id);
+        getFacture(response.data._id);
       }
-      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -76,6 +138,13 @@ const Facture = (props) => {
         response.data.map((item) => ({
           value: item._id,
           label: item.name,
+          code: item.code,
+          designation: item.designation,
+          category: item.category,
+          prixAchatHT: item.prixAchatHT,
+          prixVenteHT: item.prixVenteHT,
+          MargeHT: item.MargeHT,
+          quantite: item.quantite,
         }))
       );
     } catch (err) {

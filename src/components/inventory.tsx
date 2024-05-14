@@ -13,7 +13,7 @@ interface DataType {
   category: String;
   prixAchatHT: number;
   prixVenteHT: number;
-  MargeHT: String;
+  MargeHT: number;
   quantite: number;
 }
 
@@ -72,7 +72,8 @@ const Inventory: React.FC<InventoryProps> = ({ data, fetchStock }) => {
     {
       title: "Marge HT",
       dataIndex: "MargeHT",
-      showSorterTooltip: { target: "full-header" },
+      defaultSortOrder: "descend",
+      sorter: (a, b) => a.MargeHT - b.MargeHT,
     },
     {
       title: "Quantite",

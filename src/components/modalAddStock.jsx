@@ -65,6 +65,9 @@ const ModalComp = ({ onResponseData }) => {
       if (quantity !== "" && !/^\d+$/.test(quantity)) {
         setQuantityError("Quantity must be a number");
       }
+      if (margeHt !== "" && !/^\d+$/.test(margeHt)) {
+        setMargeHtError("Marge must be a number");
+      }
 
       if (
         name !== "" &&
@@ -74,7 +77,11 @@ const ModalComp = ({ onResponseData }) => {
         quantity !== "" &&
         /^\d+$/.test(prixAchatHt) &&
         /^\d+$/.test(prixVenteHt) &&
-        /^\d+$/.test(quantity)
+        /^\d+$/.test(quantity) &&
+        code !== "" &&
+        designation !== "" &&
+        margeHt !== "" &&
+        /^\d+$/.test(margeHt)
       ) {
         setLoading(true);
         axios

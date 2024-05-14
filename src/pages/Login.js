@@ -56,7 +56,6 @@ const Login = (props) => {
       <form className="form">
         <h1 className="title">Login</h1>
         <div className="row-input">
-          {" "}
           {/* Add margin classes here */}
           <Input
             type="email"
