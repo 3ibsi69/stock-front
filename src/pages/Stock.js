@@ -34,7 +34,6 @@ const Stock = (props) => {
   return (
     <div className="stock-container">
       <div className="stock-header">
-        <div></div>
         <ModalComp onResponseData={handleResponseData} />
       </div>
 

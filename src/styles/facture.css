@@ -1,6 +1,8 @@
 .Facture-container {
-    margin-top: 100px;
-    margin-left: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 
 }
 
@@ -49,8 +51,6 @@
 
 }
 
-
-
 .register {
     margin-top: 1rem;
     text-align: center;
@@ -62,12 +62,4 @@
 .register span {
     color: #007bff;
     text-decoration: none;
-}
-
-
-@media (max-width: 584px) {
-    .Facture-container {
-        margin: 35px;
-    }
-
 }

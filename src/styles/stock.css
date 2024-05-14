@@ -1,8 +1,21 @@
+.stock-container {
+    margin: 20px;
+}
+
 .stock-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e9ecef;
+    float: right;
+    margin: 20px;
+
+
+
+}
+
+.edit-btn {
+    width: 71px;
+    height: 32px;
+    background-color: none;
+    border: 1px solid blue;
+    border-radius: 5px;
+    color: blue;
 }

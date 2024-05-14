@@ -1,7 +1,8 @@
-.settings-container {
-    margin-top: 100px;
-    margin-left: 260px;
-
+.Settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .title {
@@ -40,12 +41,4 @@
 .register span {
     color: #007bff;
     text-decoration: none;
-}
-
-
-@media (max-width: 584px) {
-    .settings-container {
-        margin: 35px;
-    }
-
 }

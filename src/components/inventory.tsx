@@ -7,10 +7,14 @@ import "../styles/modal.css";
 
 interface DataType {
   _id: string;
-  name: string;
-  category: string;
-  price: number;
-  quantity: number;
+  code: String;
+  name: String;
+  designation: String;
+  category: String;
+  prixAchatHT: number;
+  prixVenteHT: number;
+  MargeHT: String;
+  quantite: number;
 }
 
 interface InventoryProps {
@@ -39,22 +43,42 @@ const Inventory: React.FC<InventoryProps> = ({ data, fetchStock }) => {
       showSorterTooltip: { target: "full-header" },
     },
     {
+      title: "Code",
+      dataIndex: "code",
+      showSorterTooltip: { target: "full-header" },
+    },
+    {
+      title: "Designation",
+      dataIndex: "designation",
+      showSorterTooltip: { target: "full-header" },
+    },
+    {
       title: "Category",
       dataIndex: "category",
       showSorterTooltip: { target: "full-header" },
     },
     {
-      title: "Quantity",
-      dataIndex: "quantity",
+      title: "Prix Achat HT",
+      dataIndex: "prixAchatHT",
       defaultSortOrder: "descend",
-      sorter: (a, b) => a.quantity - b.quantity,
+      sorter: (a, b) => a.prixAchatHT - b.prixAchatHT,
     },
-
     {
-      title: "Price",
-      dataIndex: "price",
+      title: "Prix Vente HT",
+      dataIndex: "prixVenteHT",
       defaultSortOrder: "descend",
-      sorter: (a, b) => a.price - b.price,
+      sorter: (a, b) => a.prixVenteHT - b.prixVenteHT,
+    },
+    {
+      title: "Marge HT",
+      dataIndex: "MargeHT",
+      showSorterTooltip: { target: "full-header" },
+    },
+    {
+      title: "Quantite",
+      dataIndex: "quantite",
+      defaultSortOrder: "descend",
+      sorter: (a, b) => a.quantite - b.quantite,
     },
     {
       title: "Action",

@@ -49,9 +49,7 @@ function SettingsS() {
   return (
     <>
       <Navbar />
-      <div className="settings-container">
-        <Settings />
-      </div>
+      <Settings />
     </>
   );
 }
