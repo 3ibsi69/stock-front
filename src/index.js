@@ -7,6 +7,9 @@ import Navbar from "./components/navbar";
 import Settings from "./pages/settings";
 import Fournisseur from "./pages/fournisseur";
 import Facture from "./pages/facture";
+import Devis from "./pages/devis";
+import Bon from "./pages/bon";
+
 import "./styles/modal.css";
 
 import "./tailwind.css";
@@ -23,6 +26,8 @@ function App() {
         <Route path="/settings" element={<SettingsS />} />
         <Route path="/fournisseur" element={<FournisseurS />} />
         <Route path="/facture" element={<FactureS />} />
+        <Route path="/devis" element={<DevisS />} />
+        <Route path="/bon-de-commande" element={<BonS />} />
       </Routes>
     </BrowserRouter>
   );
@@ -74,4 +79,24 @@ function FactureS() {
   );
 }
 
+function DevisS() {
+  return (
+    <>
+      <Navbar />
+      <div className="facture-container">
+        <Devis />
+      </div>
+    </>
+  );
+}
+function BonS() {
+  return (
+    <>
+      <Navbar />
+      <div className="facture-container">
+        <Bon />
+      </div>
+    </>
+  );
+}
 root.render(<App />);

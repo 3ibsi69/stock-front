@@ -4,13 +4,20 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsSubMenuOpen(false);
   };
 
-  const closeMobileMenu = () => {
+  const toggleSubMenu = () => {
+    setIsSubMenuOpen(!isSubMenuOpen);
+  };
+
+  const closeMenus = () => {
     setIsMobileMenuOpen(false);
+    setIsSubMenuOpen(false);
   };
 
   return (
@@ -18,11 +25,7 @@ function NavBar() {
       <div className={`nav-links ${isMobileMenuOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <Link
-              to="/stock"
-              className="hover-effect"
-              onClick={closeMobileMenu}
-            >
+            <Link to="/stock" className="hover-effect" onClick={closeMenus}>
               All Stocks
             </Link>
           </li>
@@ -30,34 +33,58 @@ function NavBar() {
             <Link
               to="/fournisseur"
               className="hover-effect"
-              onClick={closeMobileMenu}
+              onClick={closeMenus}
             >
               Fournisseur
             </Link>
           </li>
-
-          <li>
-            <Link
-              to="/facture"
-              className="hover-effect"
-              onClick={closeMobileMenu}
+          <li onClick={toggleSubMenu} className="hover-effect">
+            <span
+              style={{ display: "flex", alignItems: "center" }}
+              id="submenu"
             >
-              Facture
-            </Link>
+              Documents
+              <svg
+                style={{ marginLeft: "5px" }}
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+                />
+              </svg>
+            </span>
+            {isSubMenuOpen && (
+              <ul className="submenu">
+                <li>
+                  <Link to="/facture" onClick={closeMenus}>
+                    Facture
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/devis" onClick={closeMenus}>
+                    Devis
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/bon-de-commande" onClick={closeMenus}>
+                    Bon De Commande
+                  </Link>
+                </li>
+              </ul>
+            )}
           </li>
-
           <li>
-            <Link
-              to="/settings"
-              className="hover-effect"
-              onClick={closeMobileMenu}
-            >
+            <Link to="/settings" className="hover-effect" onClick={closeMenus}>
               Account Settings
             </Link>
           </li>
-
           <li>
-            <Link to="/" className="hover-effect" onClick={closeMobileMenu}>
+            <Link to="/" className="hover-effect" onClick={closeMenus}>
               Logout
             </Link>
           </li>

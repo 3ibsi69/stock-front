@@ -6,7 +6,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Facture = (props) => {
+const Bon = (props) => {
   const [toUser, setToUser] = useState("");
   const [toUserError, setToUserError] = useState("");
   const [fromUser, setFromUser] = useState("");
@@ -44,9 +44,7 @@ const Facture = (props) => {
 
   const getFacture = async (id) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3637/facture/get/${id}`
-      );
+      const response = await axios.get(`http://localhost:3637/bon/get/${id}`);
       const factureData = response.data;
 
       const pdfResponse = await axios.post(
@@ -72,7 +70,7 @@ const Facture = (props) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "facture.pdf");
+      link.setAttribute("download", "bon-de-commande.pdf");
 
       document.body.appendChild(link);
       link.click();
@@ -112,27 +110,24 @@ const Facture = (props) => {
       }
 
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:3637/facture/create",
-        {
-          to: toUser,
-          from: fromUser,
-          PaimentMethod: paymentMethod,
-          Remise: Remise,
-          giveRemise: giveRemise,
-          timbreFiscal: timbreF,
-          products: selectedProducts.map((product) => ({
-            _id: product.value,
-            code: product.code,
-            designation: product.designation,
-            category: product.category,
-            prixAchatHT: product.prixAchatHT,
-            prixVenteHT: product.prixVenteHT,
-            MargeHT: product.MargeHT,
-            quantite: productQuantities[product.value],
-          })),
-        }
-      );
+      const response = await axios.post("http://localhost:3637/bon/create", {
+        to: toUser,
+        from: fromUser,
+        PaimentMethod: paymentMethod,
+        Remise: Remise,
+        giveRemise: giveRemise,
+        timbreFiscal: timbreF,
+        products: selectedProducts.map((product) => ({
+          _id: product.value,
+          code: product.code,
+          designation: product.designation,
+          category: product.category,
+          prixAchatHT: product.prixAchatHT,
+          prixVenteHT: product.prixVenteHT,
+          MargeHT: product.MargeHT,
+          quantite: productQuantities[product.value],
+        })),
+      });
       if (response.data.msg === "Out of stock") {
         toast.error("Out of stock");
         setLoading(false);
@@ -148,6 +143,8 @@ const Facture = (props) => {
         getFacture(response.data._id);
         setPaymentMethod("");
         setRemise("");
+        setGiveRemise(false);
+        setTimbreF(false);
       }
     } catch (error) {
       console.log(error);
@@ -194,7 +191,7 @@ const Facture = (props) => {
   return (
     <div className="Facture-container">
       <form className="form">
-        <h1 className="title">Facture</h1>
+        <h1 className="title">Bon De Commande</h1>
 
         <div className="row-input">
           <Input
@@ -337,4 +334,4 @@ const Facture = (props) => {
   );
 };
 
-export default Facture;
+export default Bon;

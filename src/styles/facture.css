@@ -25,6 +25,17 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+}
+
 .row-input {
     margin-bottom: 1rem;
 }
@@ -40,6 +51,22 @@
     font-size: 1rem;
     font-weight: 500;
     color: #333;
+}
+
+.options-container {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+
+}
+
+.options-container .option {
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem;
+    cursor: pointer;
+
 }
 
 .row-input-q .input {
