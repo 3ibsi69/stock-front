@@ -191,7 +191,7 @@ const Bon = (props) => {
   return (
     <div className="Facture-container">
       <form className="form">
-        <h1 className="title">Bon De Commande</h1>
+        <h1 className="title">Bon De Livraison</h1>
 
         <div className="row-input">
           <Input

@@ -72,7 +72,7 @@ function NavBar() {
                 </li>
                 <li>
                   <Link to="/bon-de-commande" onClick={closeMenus}>
-                    Bon De Commande
+                    Bon De Livraison
                   </Link>
                 </li>
               </ul>
