@@ -48,7 +48,7 @@ const Bon = (props) => {
       const factureData = response.data;
 
       const pdfResponse = await axios.post(
-        "http://localhost:3637/pdf/get",
+        "http://localhost:3637/pdf/get/bon",
         {
           content: [
             {
