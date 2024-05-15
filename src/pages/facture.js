@@ -14,6 +14,13 @@ const Facture = (props) => {
   const [fromUser, setFromUser] = useState("");
   const [fromUserError, setFromUserError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paymentMethodError, setPaymentMethodError] = useState("");
+  const [giveRemise, setGiveRemise] = useState(false);
+  const [Remise, setRemise] = useState("");
+  const [RemiseError, setRemiseError] = useState("");
+  const [timbreF, setTimbreF] = useState(false);
+
   const [options, setOptions] = useState([
     {
       value: "",
@@ -52,6 +59,11 @@ const Facture = (props) => {
             {
               to: toUser,
               from: fromUser,
+              factureId: response.data._id,
+              PaimentMethod: paymentMethod,
+              giveRemise: giveRemise,
+              Remise: Remise,
+              timbreFiscal: timbreF,
               products: factureData.products,
             },
           ],
@@ -93,12 +105,25 @@ const Facture = (props) => {
         toast.error("Please enter quantity for selected products");
         return;
       }
+      if (paymentMethod === "") {
+        setPaymentMethodError("Payment Method is required");
+        return;
+      }
+      if (giveRemise && Remise === "") {
+        setRemiseError("Remise is required");
+        return;
+      }
+
       setLoading(true);
       const response = await axios.post(
         "http://localhost:3637/facture/create",
         {
           to: toUser,
           from: fromUser,
+          PaimentMethod: paymentMethod,
+          Remise: Remise,
+          giveRemise: giveRemise,
+          timbreFiscal: timbreF,
           products: selectedProducts.map((product) => ({
             _id: product.value,
             code: product.code,
@@ -201,6 +226,60 @@ const Facture = (props) => {
               onChange={(selected) => setSelectedProducts(selected)}
             />
           )}
+        </div>
+        <div className="row-input">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>
+              <input
+                type="checkbox"
+                value={giveRemise}
+                onChange={(e) => setGiveRemise(e.target.checked)}
+                style={{ marginRight: "10px" }}
+              />
+              <label>Give Remise</label>
+            </div>
+            <Input
+              type="Remise"
+              placeholder="Remise"
+              value={Remise}
+              onChange={(e) => {
+                setRemise(e.target.value);
+                setRemiseError("");
+              }}
+              error={RemiseError}
+              disabled={!giveRemise}
+            />
+          </div>
+        </div>
+
+        <div className="row-input">
+          <select
+            value={paymentMethod}
+            onChange={(e) => {
+              setPaymentMethod(e.target.value);
+              setPaymentMethodError("");
+            }}
+          >
+            <option value="">Select Payment Method</option>
+            <option value="Cash">Cash</option>
+            <option value="Cheque">Cheque</option>
+            <option value="Bon de Dommande">Bon De Commande</option>
+          </select>
+        </div>
+        <div className="row-input">
+          <input
+            type="checkbox"
+            value={timbreF}
+            onChange={(e) => setTimbreF(e.target.checked)}
+            style={{ marginRight: "10px" }}
+          />
+          <label>Timbre Fiscale</label>
         </div>
 
         {selectedProducts.map((product, index) => (
