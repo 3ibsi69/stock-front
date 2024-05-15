@@ -71,7 +71,7 @@ function NavBar() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/bon-de-commande" onClick={closeMenus}>
+                  <Link to="/bon-de-livraison" onClick={closeMenus}>
                     Bon De Livraison
                   </Link>
                 </li>

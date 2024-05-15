@@ -27,7 +27,7 @@ function App() {
         <Route path="/fournisseur" element={<FournisseurS />} />
         <Route path="/facture" element={<FactureS />} />
         <Route path="/devis" element={<DevisS />} />
-        <Route path="/bon-de-commande" element={<BonS />} />
+        <Route path="/bon-de-livraison" element={<BonS />} />
       </Routes>
     </BrowserRouter>
   );

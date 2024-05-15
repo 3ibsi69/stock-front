@@ -55,6 +55,7 @@ const Bon = (props) => {
               to: toUser,
               from: fromUser,
               factureId: response.data._id,
+              count: response.data.count,
               PaimentMethod: paymentMethod,
               giveRemise: giveRemise,
               Remise: Remise,
@@ -70,7 +71,7 @@ const Bon = (props) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.setAttribute("download", "bon-de-commande.pdf");
+      link.setAttribute("download", "bon-de-livraison.pdf");
 
       document.body.appendChild(link);
       link.click();
@@ -134,7 +135,7 @@ const Bon = (props) => {
 
         return;
       } else {
-        toast.success("Facture created successfully");
+        toast.success("Bon de livraison created successfully");
         setToUser("");
         setFromUser("");
         setSelectedProducts([]);
@@ -301,7 +302,12 @@ const Bon = (props) => {
                       ),
                     ])
                   }
-                  style={{ cursor: "pointer", marginRight: "5px" }}
+                  style={{
+                    cursor: "pointer",
+                    marginRight: "5px",
+                    color: "red",
+                    fontStyle: "italic",
+                  }}
                 >
                   X
                 </div>

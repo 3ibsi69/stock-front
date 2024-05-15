@@ -48,13 +48,14 @@ const Devis = (props) => {
       const factureData = response.data;
 
       const pdfResponse = await axios.post(
-        "http://localhost:3637/pdf/get",
+        "http://localhost:3637/pdf/get/devis",
         {
           content: [
             {
               to: toUser,
               from: fromUser,
               factureId: response.data._id,
+              count: response.data.count,
               PaimentMethod: paymentMethod,
               giveRemise: giveRemise,
               Remise: Remise,
@@ -134,7 +135,7 @@ const Devis = (props) => {
 
         return;
       } else {
-        toast.success("Facture created successfully");
+        toast.success("Devis created successfully");
         setToUser("");
         setFromUser("");
         setSelectedProducts([]);

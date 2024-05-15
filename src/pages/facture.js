@@ -57,6 +57,7 @@ const Facture = (props) => {
               to: toUser,
               from: fromUser,
               factureId: response.data._id,
+              count: response.data.count,
               PaimentMethod: paymentMethod,
               giveRemise: giveRemise,
               Remise: Remise,
@@ -304,7 +305,12 @@ const Facture = (props) => {
                       ),
                     ])
                   }
-                  style={{ cursor: "pointer", marginRight: "5px" }}
+                  style={{
+                    cursor: "pointer",
+                    marginRight: "5px",
+                    color: "red",
+                    fontStyle: "italic",
+                  }}
                 >
                   X
                 </div>
